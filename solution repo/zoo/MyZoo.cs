@@ -6,17 +6,17 @@ using System.Collections.Generic;
 
 namespace solution_repo.zoo
 {
-    internal class MyZoo
+    public class MyZoo
     {
-        private readonly IZoo eleObj;
-        private readonly IZoo lionCage;
-        private readonly IZoo tigerCage;
+        IZoo eleObj;
+        IZoo lionCage;
+        IZoo tigerCage;
 
         public MyZoo(IZoo eleObj, IZoo lionCage, IZoo tigerCage)
         {
-            this.eleObj = new ElephantCage();
-            this.lionCage = new LionCage();
-            this.tigerCage = new TigerCage();
+            this.eleObj = eleObj;
+            this.lionCage = lionCage;
+            this.tigerCage = tigerCage;   
         }
 
         public Dictionary<string, string> MyZooTycoon()
