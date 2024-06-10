@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace solution_repo.Animals.Elephant
 {
-    internal class ElephantCage : IZoo
+    public class ElephantCage : IZoo
     {
         public string getAnimal(string animal)
         {

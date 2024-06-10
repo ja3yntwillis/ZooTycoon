@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace solution_repo.Ibase
 {
-    internal interface IZoo
+    public interface IZoo
     {
         public string getCage(string cage);
         public string getAnimal(string animal);
