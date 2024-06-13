@@ -5,3 +5,4 @@ using solution_repo.zoo;
 
 MyZoo myZoo = new MyZoo(new ElephantCage(),new LionCage(),new TigerCage());
 myZoo.MyZooTycoon();
+var a= new FeedAnimals(new TigerCage(), new LionCage(), new ElephantCage()).FeedAllAnimals();
