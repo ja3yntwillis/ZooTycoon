@@ -39,6 +39,7 @@ namespace Zoo_Integration
 
 
             var myZoo = new MyZoo(eleObj, lionCage, tigerCage);
+            var feedAnimal = new FeedAnimals(tigerCage, lionCage, eleObj);
 
             // Act
             Dictionary<string, string> result = myZoo.MyZooTycoon();
@@ -105,13 +106,13 @@ namespace Zoo_Integration
             tigerObj.getCage("tiger").Returns("Mocked Tiger");
             tigerObj.getFood().Returns(new List<string> { "tigerFood", "tigerFood2", "tigerFood3" });
 
-            //var myZoo = new MyZoo(eleObj, lionObj, tigerObj);
+            var myZoo = new MyZoo(eleObj, lionObj, tigerObj);
 
             //Act
-            //Dictionary<string, string> result = myZoo.MyZooTycoon();
+            Dictionary<string, string> result = myZoo.MyZooTycoon();
 
             //Assert
-            //Assert.Equal(result.Count, 9);
+            Assert.Equal(result.Count, 9);
             Assert.Contains((string)food[0], "Vegetables");
             Assert.Contains((string)food[1], "Leaves");
         }
@@ -160,7 +161,32 @@ namespace Zoo_Integration
             var lionName = lionObjectReal.getAnimal("lion");
             //Assert
             Assert.Equal("lion and it's Cub", lionName);
+        }
+        [Fact]
+        public void FeedAllAnimals_RealPositive()
+        {
+            // Arrange
+            ElephantCage eleObj = new ElephantCage();
+            List<string> animalName = new List<string>();
+            animalName.Add(eleObj.getAnimal("elephant"));
+            animalName.Add(eleObj.getAnimal("rabbit"));
+            animalName.Add(eleObj.getAnimal("deer"));
+            animalName.Add(eleObj.getAnimal("zebra"));
+
+            var tigerObj = new TigerCage();
+            var lionObj = new LionCage();
             
+            var feedAnimal = new FeedAnimals(tigerObj, lionObj, eleObj);
+            //Act
+            List<string> cageListForThreeAnimals = feedAnimal.cageAllAnimals("elephant", "rabbit", "deer");
+            var zebraCage = eleObj.getCage("zebra");
+            var food = eleObj.getFood();
+
+            // Assert
+            Assert.Equal(new List<string> { "elephant and it's Cub", "rabbit and it's Cub", "deer and it's Cub", "zebra and it's Cub" }, animalName);
+            Assert.Equal(new List<string> { "elephant", "rabbit", "deer" }, cageListForThreeAnimals);
+            Assert.StrictEqual("zebra", zebraCage);
+            Assert.Equal(new List<string>{ "Vegetables", "Leaves"}, food);
         }
     }
 }
