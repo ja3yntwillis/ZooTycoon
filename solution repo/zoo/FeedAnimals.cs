@@ -1,6 +1,7 @@
 ﻿using solution_repo.Animals.Elephant;
 using solution_repo.Animals.Lion;
 using solution_repo.Animals.Tiger;
+using solution_repo.Ibase;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,11 +13,11 @@ namespace solution_repo.zoo
 {
     public class FeedAnimals
     {
-        TigerCage tiger;
-        LionCage lion;
-        ElephantCage elephant;
+        IZoo tiger;
+        IZoo lion;
+        IZoo elephant;
         //Tiger and Lion both can eat each other's food but none can eat elaphants food 
-        public FeedAnimals(TigerCage tiger, LionCage lion, ElephantCage elephant)
+        public FeedAnimals(IZoo tiger, IZoo lion, IZoo elephant)
         {
             this.lion = lion;
             this.tiger = tiger;
